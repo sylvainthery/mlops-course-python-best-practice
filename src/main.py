@@ -2,16 +2,37 @@ import os
 from PIL import Image
 import torch
 from torchvision import transforms, models
-#from torchvision.models.resnet import ResNet18_Weights
+from torchvision.models.resnet import ResNet18_Weights
 
 
 import pytest
 
+#Class that manage the image of a disk directory.
 class imageData:
+    """ 
+    Class that search images in a disk directory
+
+    Attributes
+    ----------
+    DIR : str
+        the DIR to traverse
+
+    Methods
+    -------
+    LoadImages
+        scan the directory and return a list of images
+    """
     def __init__(self, DIR):
         self.dir = DIR
 
     def LoadImages(self):
+        """ Scan the direction ans load images
+
+        Returns
+        -------
+        list
+            a list of images
+        """
         imgs = []
         for file in os.listdir(self.dir):
             if file.endswith('.jpg') or file.endswith('.png'):
@@ -19,12 +40,12 @@ class imageData:
         return imgs
 
 def test_imgData_fake():
-    loader = imageData("../images/")
+    loader = imageData("./images/")
     images = loader.LoadImages()
     assert(len(images) == 3)
 
 def test_imgData():
-    loader = imageData("../images/")
+    loader = imageData("./images/")
     images = loader.LoadImages()
     assert(len(images) == 2)
 
@@ -62,7 +83,7 @@ class predictor:
         return results
 
 
-
+test_imgData()
 
 if __name__ == '__main__':
     loader = imageData('images/')
