@@ -18,6 +18,17 @@ class imageData:
                 imgs.append(Image.open(os.path.join(self.dir, file)))
         return imgs
 
+def test_imgData_fake():
+    loader = imageData("../images/")
+    images = loader.LoadImages()
+    assert(len(images) == 3)
+
+def test_imgData():
+    loader = imageData("../images/")
+    images = loader.LoadImages()
+    assert(len(images) == 2)
+
+
 class imgProcess:
     def __init__(self, size):
         self.s = size
