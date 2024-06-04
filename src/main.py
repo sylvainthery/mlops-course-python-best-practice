@@ -2,17 +2,20 @@ import os
 from PIL import Image
 import torch
 from torchvision import transforms, models
-from torchvision.models.resnet import ResNet18_Weights
+#from torchvision.models.resnet import ResNet18_Weights
+
+
+import pytest
 
 class imageData:
     def __init__(self, DIR):
-        self.D = DIR
+        self.dir = DIR
 
     def LoadImages(self):
         imgs = []
-        for F in os.listdir(self.D):
-            if F.endswith('.jpg') or F.endswith('.png'):
-                imgs.append(Image.open(os.path.join(self.D, F)))
+        for file in os.listdir(self.dir):
+            if file.endswith('.jpg') or file.endswith('.png'):
+                imgs.append(Image.open(os.path.join(self.dir, file)))
         return imgs
 
 class imgProcess:
