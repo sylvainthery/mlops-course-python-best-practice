@@ -1,0 +1,9 @@
+coverage run src/main.py
+
+coverage report
+
+
+---------------------------------
+src/main.py      51      3    94%
+---------------------------------
+TOTAL            51      3    94%
